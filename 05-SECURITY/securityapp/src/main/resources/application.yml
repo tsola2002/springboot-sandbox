@@ -1,0 +1,30 @@
+spring:
+  application:
+    name: securityapp
+
+  logging:
+    level:
+      org:
+        springframework:
+          security: DEBUG
+  # security:
+  #   user:
+  #     name: admin
+  #     password: test123
+
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/securitydb
+    username: postgres
+    password: admin
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
+    database: default
+    show-sql: true
+
+server:
+  port: 7000
