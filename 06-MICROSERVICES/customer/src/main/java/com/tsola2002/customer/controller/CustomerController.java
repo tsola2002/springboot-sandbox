@@ -2,7 +2,8 @@ package com.tsola2002.customer.controller;
 
 import com.tsola2002.customer.model.Customer;
 import com.tsola2002.customer.service.CustomerService;
-import lombok.Value;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,7 +15,9 @@ import java.util.List;
 @RequestMapping("/api/v1/customer")
 public class CustomerController {
 
+    @Autowired
     private final CustomerService service;
+
     @Value("${order.service.url:http://localhost:8081}")
     private String orderServiceUrl;
 
