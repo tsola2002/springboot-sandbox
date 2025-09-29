@@ -15,11 +15,15 @@ public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
-    private Integer customerId;
+    private int id;
 
     @Column
-    private String customerName;
+    private String name;
 
     @Column
-    private String customerAddress;
+    private String address;
+
+    @Column
+    private String gender;
+
 }
