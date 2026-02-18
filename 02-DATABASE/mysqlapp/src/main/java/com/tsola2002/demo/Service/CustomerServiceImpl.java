@@ -17,10 +17,12 @@ public class CustomerServiceImpl implements CustomerService {
   }
 
   public List<Customer> getAllCustomers(){
+
     return customerRepository.findAll();
   }
 
   public Customer createCustomer(Customer customer){
+
     return customerRepository.save(customer);
   }
 
@@ -42,6 +44,7 @@ public class CustomerServiceImpl implements CustomerService {
 
   @Override
   public void deleteCustomer(Integer id) {
+
     customerRepository.deleteById(id);
   }
 }
