@@ -7,16 +7,16 @@ spring:
       org:
         springframework:
           security: DEBUG
-  # security:
-  #   user:
-  #     name: admin
-  #     password: test123
+#  security:
+#    user:
+#      name: admin
+#      password: test123
 
 
   datasource:
     url: jdbc:postgresql://localhost:5432/securitydb
     username: postgres
-    password: admin
+    password: postgres
     driver-class-name: org.postgresql.Driver
 
   jpa:

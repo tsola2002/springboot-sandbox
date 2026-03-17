@@ -18,7 +18,6 @@ public class SecurityConfig {
 
     @Bean
     public InMemoryUserDetailsManager inMemoryUserDetailsManager() {
-
         // CREATE USER AND ROLES
         UserDetails john = User.builder()
                 .username("john")
@@ -32,18 +31,16 @@ public class SecurityConfig {
                 .roles("EMPLOYEE", "MANAGER")
                 .build();
 
-
         UserDetails susan = User.builder()
                 .username("susan")
                 .password("{noop}1234")
                 .roles("EMPLOYEE", "MANAGER", "ADMIN")
                 .build();
-
         return new InMemoryUserDetailsManager(john, mary, susan);
     }
 
     // restricting access to apis based on roles
-
+    @Bean
     public SecurityFilterChain filterChain(HttpSecurity http)
             throws Exception {
 
@@ -51,8 +48,8 @@ public class SecurityConfig {
                 configurer
                         .requestMatchers(HttpMethod.GET, "/api/v1/employees").hasRole("EMPLOYEE")
                         .requestMatchers(HttpMethod.GET, "/api/v1/employees/**").hasRole("EMPLOYEE")
-                        .requestMatchers(HttpMethod.POST, "/api/v1/employees/**").hasRole("EMPLOYEE")
-                        .requestMatchers(HttpMethod.POST, "/api/v1/employees").hasRole("EMPLOYEE")
+                        .requestMatchers(HttpMethod.POST, "/api/v1/employees/**").hasRole("MANAGER")
+                        .requestMatchers(HttpMethod.POST, "/api/v1/employees").hasRole("MANAGER")
                         .requestMatchers(HttpMethod.PUT, "/api/v1/employees").hasRole("MANAGER")
                         .requestMatchers(HttpMethod.DELETE, "/api/v1/employees/**").hasRole("ADMIN"));
 
