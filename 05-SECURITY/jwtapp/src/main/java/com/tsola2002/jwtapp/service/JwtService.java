@@ -2,13 +2,16 @@ package com.tsola2002.jwtapp.service;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.security.Keys;
 import org.springframework.stereotype.Service;
-
+import java.security.Key;
 import java.util.Date;
 
 @Service
 public class JwtService {
-    private String SECRET = "secretkey123";
+
+
+    private Key key = Keys.secretKeyFor(io.jsonwebtoken.SignatureAlgorithm.HS256);
 
     public String generateToken(String username){
         return Jwts.builder()
@@ -17,13 +20,13 @@ public class JwtService {
                 .setExpiration(
                         new Date(System.currentTimeMillis()+1000*60*60)
                 )
-                .signWith(SignatureAlgorithm.HS256, SECRET)
+                .signWith(key)
                 .compact();
     }
 
     public String extractUsername(String token){
         return Jwts.parser()
-                .setSigningKey(SECRET)
+                .setSigningKey(key)
                 .parseClaimsJws(token)
                 .getBody()
                 .getSubject();
