@@ -1,14 +1,13 @@
-package com.tsola2002.mysqlapp;
+package com.tsola2002.order;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class MysqlappApplication {
+public class OrderApplication {
 
 	public static void main(String[] args) {
-
-        SpringApplication.run(MysqlappApplication.class, args);
+		SpringApplication.run(OrderApplication.class, args);
 	}
 
 }

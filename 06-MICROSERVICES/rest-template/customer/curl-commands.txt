@@ -1,0 +1,7 @@
+// TEST GET CUSTOMER BY ID
+curl http://localhost:8080/customers/1
+
+// THIS WILL CREATE A CUSTOMER
+curl -X POST http://localhost:8080/customers \
+-H "Content-Type: application/json" \
+-d '{"name": "John", "email":"john@gmail.com"}'

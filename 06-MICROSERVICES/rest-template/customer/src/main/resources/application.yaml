@@ -1,15 +1,19 @@
 spring:
   application:
-    name: mysqlapp
+    name: customer
   datasource:
-    url: jdbc:mysql://localhost:3306/customerdb
+    url: jdbc:mysql://localhost:3306/customerservicedb
     username: root
     password:
+    driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
-    generate-ddl: true
     hibernate:
       ddl-auto: update
+    show-sql: true
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQLDialect
-    show-sql: true
+server:
+  port: 8080
+
+
