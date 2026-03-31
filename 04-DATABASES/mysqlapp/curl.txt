@@ -1,0 +1,26 @@
+READ ALL CUSTOMER
+curl localhost:8080/api/customers
+
+READ ONE CUSTOMER
+curl http://localhost:8080/api/customers/1
+
+CREATE A CUSTOMER
+curl -X POST http://localhost:8080/api/customers \
+-H "Content-Type: application/json" \
+-d '{
+    "name": "John Doe",
+    "email": "john@yahoo.com",
+    "phone": "090912"
+}'
+
+UPDATE A CUSTOMER
+curl -X PUT http://localhost:8080/api/customers/1 \
+-H "Content-Type: application/json" \
+-d '{
+    "name": "John Updated Record",
+    "email": "john.updated@yahoo.com",
+    "phone": "419419"
+}'
+
+DELETE A CUSTOMER
+curl -X DELETE http://localhost:8080/api/customers/1
