@@ -1,5 +1,6 @@
 package com.tsola2002.order.service;
 
+import com.tsola2002.order.dto.Customer;
 import com.tsola2002.order.entity.Order;
 import com.tsola2002.order.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,33 @@ public class OrderService {
     private OrderRepository orderRepository;
     @Autowired
     private RestTemplate restTemplate;
+
+    // URL TO REPRESENT CUSTOMER MICROSERVICE
+    private final String CUSTOMER_URL = "localhost:8080/customers";
+
+    //CREATE CUSTOMER
+    public Customer createCustomer(Customer customer){
+        return restTemplate.postForObject(
+                CUSTOMER_URL,
+                customer,
+                Customer.class
+        );
+    }
+
+    // UPDATE CUSTOMER
+    public void updateCustomer(Long id, Customer customer){
+        restTemplate.put(
+                CUSTOMER_URL + "/" + id,
+                customer
+        );
+    }
+
+    // DELETE CUSTOMER
+    public void deleteCustomer(Long id, Customer customer){
+        restTemplate.delete(
+                CUSTOMER_URL + "/" + id
+        );
+    }
 
     public Map<String, Object> createOrder(Order order){
         // customer microservice url
