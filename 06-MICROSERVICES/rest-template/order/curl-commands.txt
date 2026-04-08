@@ -2,3 +2,16 @@
 curl -X POST http://localhost:8081/orders \
 -H "Content-Type: application/json" \
 -d '{"customerId":1, "product":"Laptop"}'
+
+// CREATE A CUSTOMER FROM INSIDE ORDER MICROSERVICE
+curl -X POST http://localhost:8081/orders/customers \
+-H "Content-Type: application/json" \
+-d '{"name": "Alice", "email":"alice@email.com"}'
+
+// UPDATE A CUSTOMER FROM INSIDE ORDER MICROSERVICE
+curl -X PUT http://localhost:8081/orders/customers/1 \
+-H "Content-Type: application/json" \
+-d '{"name": "AliceUpdated", "email":"aliceUpdated@email.com"}'
+
+// DELETE A CUSTOMER FROM INSIDE ORDER MICROSERVICE
+curl -X DELETE http://localhost:8081/orders/customers/1 \

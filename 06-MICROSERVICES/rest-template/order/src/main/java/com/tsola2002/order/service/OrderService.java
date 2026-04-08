@@ -19,7 +19,8 @@ public class OrderService {
     private RestTemplate restTemplate;
 
     // URL TO REPRESENT CUSTOMER MICROSERVICE
-    private final String CUSTOMER_URL = "localhost:8080/customers";
+    private final String CUSTOMER_URL = "http://localhost:8080/customers";
+
 
     //CREATE CUSTOMER
     public Customer createCustomer(Customer customer){
@@ -38,8 +39,10 @@ public class OrderService {
         );
     }
 
+
+
     // DELETE CUSTOMER
-    public void deleteCustomer(Long id, Customer customer){
+    public void deleteCustomer(Long id){
         restTemplate.delete(
                 CUSTOMER_URL + "/" + id
         );
