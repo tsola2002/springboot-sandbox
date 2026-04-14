@@ -1,6 +1,10 @@
 spring:
   application:
     name: mysqlapp
+  security:
+    user:
+      name: testuser
+      password: testpassword
   datasource:
     url: jdbc:mysql://localhost:3306/customerdb
     username: root
