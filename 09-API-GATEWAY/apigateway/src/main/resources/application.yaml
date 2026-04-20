@@ -1,0 +1,27 @@
+server:
+  port: 9000
+
+spring:
+  application:
+    name: apigateway
+  cloud:
+    gateway:
+      routes:
+
+        - id: customer-service
+          uri: lb://CUSTOMER-SERVICE
+          predicates:
+            - Path=/api/customers/**
+          filters:
+            - RewritePath=/api/(?<segment>.*), /${segment}
+
+        - id: order-service
+          uri: lb://ORDER-SERVICE
+          predicates:
+            - Path=/api/orders/**
+          filters:
+            - RewritePath=/api/(?<segment>.*), /${segment}
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka

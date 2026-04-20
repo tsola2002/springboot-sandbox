@@ -1,12 +1,11 @@
 spring:
   application:
     name: securityapp
-
-  logging:
-    level:
-      org:
-        springframework:
-          security: DEBUG
+#  logging:
+#    level:
+#      org:
+#        springframework:
+#          security: DEBUG
 #  security:
 #    user:
 #      name: admin
