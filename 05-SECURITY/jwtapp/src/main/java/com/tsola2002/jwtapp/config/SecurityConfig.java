@@ -16,9 +16,7 @@ public class SecurityConfig {
 
     private final JwtService jwtService;
 
-    public SecurityConfig(JwtService jwtService) {
-        this.jwtService = jwtService;
-    }
+
 
     @Bean
     public JwtAuthFilter jwtAuthFilter() {
