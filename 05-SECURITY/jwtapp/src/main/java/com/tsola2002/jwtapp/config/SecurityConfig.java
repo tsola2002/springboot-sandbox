@@ -14,8 +14,11 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 @RequiredArgsConstructor
 public class SecurityConfig {
 
-    @Autowired
-    private JwtService jwtService;
+    private final JwtService jwtService;
+
+    public SecurityConfig(JwtService jwtService) {
+        this.jwtService = jwtService;
+    }
 
     @Bean
     public JwtAuthFilter jwtAuthFilter() {

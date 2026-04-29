@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/customer")
+@RequestMapping("/api/customer")
 public class CustomerController {
 
     @Autowired
@@ -23,11 +23,13 @@ public class CustomerController {
 
 
     public CustomerController(CustomerService service) {
+
         this.service = service;
     }
 
     @GetMapping
     public List<Customer> getAllCustomers() {
+
         return service.getAllCustomers();
     }
 
