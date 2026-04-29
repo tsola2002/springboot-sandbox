@@ -3,6 +3,7 @@ package com.tsola2002.jwtapp.controller;
 import com.tsola2002.jwtapp.dto.LoginRequest;
 import com.tsola2002.jwtapp.service.JwtService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,7 +16,8 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class AuthController {
 
-    private final JwtService jwtService;
+    @Autowired
+    private JwtService jwtService;
 
     @PostMapping("/login")
     public Map<String, String> login(@RequestBody LoginRequest request){
