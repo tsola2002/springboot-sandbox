@@ -22,7 +22,6 @@ public class CustomerServiceImpl implements CustomerService {
   }
 
   public Customer createCustomer(Customer customer){
-
     return customerRepository.save(customer);
   }
 
