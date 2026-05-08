@@ -21,12 +21,13 @@ public class AuthController {
 
     @PostMapping("/login")
     public Map<String, String> login(@RequestBody LoginRequest request){
-        if(request.getUsername().equals("admin") &&
-           request.getPassword().equals("password")){
+        if ("admin".equals(request.getUsername()) &&
+                "password".equals(request.getPassword())) {
+
             String token = jwtService.generateToken(request.getUsername());
-            return  Map.of("token", token);
+            return Map.of("token", token);
         }
 
-        throw  new RuntimeException("Invalid Credentials");
+        throw new RuntimeException("Invalid Credentials");
     }
 }
