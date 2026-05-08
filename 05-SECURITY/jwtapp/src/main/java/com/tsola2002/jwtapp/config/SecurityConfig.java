@@ -1,6 +1,7 @@
 package com.tsola2002.jwtapp.config;
 
 import com.tsola2002.jwtapp.service.JwtService;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -16,11 +17,8 @@ public class SecurityConfig {
 
     private final JwtService jwtService;
 
-
-
     @Bean
     public JwtAuthFilter jwtAuthFilter() {
-
         return new JwtAuthFilter(jwtService);
     }
 
@@ -28,29 +26,31 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
         http
-                // ✅ FIX 1: Allow H2 console (disable CSRF only for it)
-                .csrf(csrf -> csrf
-                        .ignoringRequestMatchers("/h2-console/**")
-                        .disable()
-                )
+                .csrf(csrf -> csrf.disable())
 
-                // ✅ FIX 2: Allow H2 console to load in browser (iframe)
-                .headers(headers -> headers
-                        .frameOptions(frame -> frame.disable())
-                )
+                .headers(headers -> headers.frameOptions(frame -> frame.disable()))
 
-                // ✅ Stateless JWT
                 .sessionManagement(session ->
                         session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 )
 
-                // ✅ FIX 3: Allow H2 console endpoint
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/auth/login", "/h2-console/**").permitAll()
                         .anyRequest().authenticated()
                 )
 
-                // ✅ JWT filter
+                // ✅ disable default auth
+                .formLogin(form -> form.disable())
+                .httpBasic(httpBasic -> httpBasic.disable())
+
+                // ✅ handle unauthorized properly
+                .exceptionHandling(ex -> ex
+                        .authenticationEntryPoint((req, res, e) -> {
+                            res.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+                            res.getWriter().write("Unauthorized");
+                        })
+                )
+
                 .addFilterBefore(jwtAuthFilter(), UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
