@@ -3,15 +3,27 @@ import api from "../api/axios";
 
 const AuthContext = createContext();
 
+
 export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(
     !!localStorage.getItem("token")
   );
 
   const login = async (username, password) => {
-    const res = await api.post("/auth/login", { username, password });
-    localStorage.setItem("token", res.data.token);
-    setIsAuthenticated(true);
+    try {
+      const response = await api.post("/auth/login", {
+        username,
+        password,
+      });
+
+      localStorage.setItem("token", response.data.token);
+
+      setIsAuthenticated(true);
+
+      return true;
+    } catch (error) {
+      throw error;
+    }
   };
 
   const logout = () => {
@@ -20,7 +32,13 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, login, logout }}>
+    <AuthContext.Provider
+      value={{
+        login,
+        logout,
+        isAuthenticated,
+      }}
+    >
       {children}
     </AuthContext.Provider>
   );

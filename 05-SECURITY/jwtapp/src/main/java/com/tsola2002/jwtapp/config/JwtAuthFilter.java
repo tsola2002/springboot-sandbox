@@ -17,17 +17,21 @@ import java.util.Collections;
 @RequiredArgsConstructor
 public class JwtAuthFilter extends OncePerRequestFilter {
 
-    private final JwtService jwtService; // ✅ no @Autowired
+    private final JwtService jwtService;
 
     @Override
-    protected void doFilterInternal(HttpServletRequest request,
-                                    HttpServletResponse response,
-                                    FilterChain filterChain)
-            throws ServletException, IOException {
+    protected void doFilterInternal(
+            HttpServletRequest request,
+            HttpServletResponse response,
+            FilterChain filterChain
+    ) throws ServletException, IOException {
 
-        String header = request.getHeader("Authorization");
+        String header =
+                request.getHeader("Authorization");
 
-        if (header == null || !header.startsWith("Bearer ")) {
+        if (header == null ||
+                !header.startsWith("Bearer ")) {
+
             filterChain.doFilter(request, response);
             return;
         }
@@ -36,7 +40,8 @@ public class JwtAuthFilter extends OncePerRequestFilter {
 
         if (jwtService.validateToken(token)) {
 
-            String username = jwtService.extractUsername(token);
+            String username =
+                    jwtService.extractUsername(token);
 
             UsernamePasswordAuthenticationToken auth =
                     new UsernamePasswordAuthenticationToken(
@@ -45,7 +50,9 @@ public class JwtAuthFilter extends OncePerRequestFilter {
                             Collections.emptyList()
                     );
 
-            SecurityContextHolder.getContext().setAuthentication(auth);
+            SecurityContextHolder
+                    .getContext()
+                    .setAuthentication(auth);
         }
 
         filterChain.doFilter(request, response);
