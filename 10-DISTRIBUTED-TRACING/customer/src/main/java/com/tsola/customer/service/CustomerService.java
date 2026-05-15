@@ -1,16 +1,20 @@
 package com.tsola.customer.service;
 
 import com.tsola.customer.dto.CustomerRegistrationRequest;
+import com.tsola.customer.dto.FraudCheckResponse;
 import com.tsola.customer.entity.Customer;
 import com.tsola.customer.repository.CustomerRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 @Service
 @AllArgsConstructor
 public class CustomerService {
 
     private final CustomerRepository customerRepository;
+
+    private final RestTemplate restTemplate;
 
     public void registerCustomer(CustomerRegistrationRequest request) {
         Customer customer = Customer.builder()
@@ -23,12 +27,15 @@ public class CustomerService {
         // todo: check if email not taken
         customerRepository.saveAndFlush(customer);
 
-//        FraudCheckResponse fraudCheckResponse =
-//                fraudClient.isFraudster(customer.getId());
-//
-//        if (fraudCheckResponse.isFraudster()) {
-//            throw new IllegalStateException("fraudster");
-//        }
+        FraudCheckResponse fraudCheckResponse = restTemplate.getForObject(
+                "http://localhost:8081/api/v1/fraud-check/{customerId}",
+                FraudCheckResponse.class,
+                customer.getId());
+
+
+        if (fraudCheckResponse.isFraudster()) {
+            throw new IllegalStateException("fraudster");
+        }
 
 //        NotificationRequest notificationRequest = new NotificationRequest(
 //                customer.getId(),
