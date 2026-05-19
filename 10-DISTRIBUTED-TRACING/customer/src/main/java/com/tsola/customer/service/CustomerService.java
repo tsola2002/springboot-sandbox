@@ -5,11 +5,13 @@ import com.tsola.customer.dto.FraudCheckResponse;
 import com.tsola.customer.entity.Customer;
 import com.tsola.customer.repository.CustomerRepository;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 @Service
 @AllArgsConstructor
+@Slf4j
 public class CustomerService {
 
     private final CustomerRepository customerRepository;
@@ -26,11 +28,12 @@ public class CustomerService {
         // todo: check if email valid
         // todo: check if email not taken
         customerRepository.saveAndFlush(customer);
-
+        //log.info("Registering Customer");
         FraudCheckResponse fraudCheckResponse = restTemplate.getForObject(
                 "http://localhost:8081/api/v1/fraud-check/{customerId}",
                 FraudCheckResponse.class,
                 customer.getId());
+        // log.info("Customer Registered");
 
 
         if (fraudCheckResponse.isFraudster()) {

@@ -1,0 +1,66 @@
+package com.tsola2002.order.service;
+
+import com.tsola2002.order.dto.Customer;
+import com.tsola2002.order.entity.Order;
+import com.tsola2002.order.repository.OrderRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
+
+import java.util.HashMap;
+import java.util.Map;
+
+@Service
+public class OrderService {
+
+    @Autowired
+    private OrderRepository orderRepository;
+    @Autowired
+    private RestTemplate restTemplate;
+
+    // URL TO REPRESENT CUSTOMER MICROSERVICE
+    private final String CUSTOMER_URL = "http://localhost:8080/customers";
+
+
+    //CREATE CUSTOMER
+    public Customer createCustomer(Customer customer){
+        return restTemplate.postForObject(
+                CUSTOMER_URL,
+                customer,
+                Customer.class
+        );
+    }
+
+    // REST TEMPLATE UPDATE CUSTOMER
+    public void updateCustomer(Long id, Customer customer){
+        restTemplate.put(
+                CUSTOMER_URL + "/" + id,
+                customer
+        );
+    }
+
+
+
+    // REST TEMPLATE DELETE CUSTOMER
+    public void deleteCustomer(Long id){
+        restTemplate.delete(
+                CUSTOMER_URL + "/" + id
+        );
+    }
+
+    public Map<String, Object> createOrder(Order order){
+        // customer microservice url
+        String url = "http://localhost:8080/customers/" + order.getCustomerId();
+
+        //make a call to customer microservice
+        //Customer customer = restTemplate.getForObject(url, Customer.class);
+
+        Order savedOrder = orderRepository.save(order);
+
+        // combine response
+        Map<String, Object> response = new HashMap<>();
+        response.put("order", savedOrder);
+        //response.put("customer", customer);
+        return response;
+    }
+}

@@ -1,8 +1,17 @@
 server:
   port: 8081
+management:
+  tracing:
+    sampling:
+      probability: 1.0
+logging:
+  pattern:
+    level: "%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]"
 spring:
   application:
     name: fraud
+  zipkin:
+    base-url: http://localhost:9411
   datasource:
     url: jdbc:mysql://localhost:3306/ms-db-fraud
     username: root
