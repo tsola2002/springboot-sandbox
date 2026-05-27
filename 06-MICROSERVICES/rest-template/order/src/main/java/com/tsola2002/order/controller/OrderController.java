@@ -23,7 +23,6 @@ public class OrderController {
     //CREATE CUSTOMER
     @PostMapping("/customers")
     public Customer createCustomer(@RequestBody Customer customer){
-
         return orderService.createCustomer(customer);
     }
 

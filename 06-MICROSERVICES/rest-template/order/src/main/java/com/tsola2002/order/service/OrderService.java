@@ -24,6 +24,7 @@ public class OrderService {
 
     //CREATE CUSTOMER
     public Customer createCustomer(Customer customer){
+        // USING REST TEMPLATE TO MAKE A REQUEST TO CUSTOMER MICROSERVICE
         return restTemplate.postForObject(
                 CUSTOMER_URL,
                 customer,
