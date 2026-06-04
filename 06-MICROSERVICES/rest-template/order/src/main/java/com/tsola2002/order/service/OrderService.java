@@ -51,7 +51,7 @@ public class OrderService {
 
     public Map<String, Object> createOrder(Order order){
         // customer microservice url
-        String url = "http://localhost:8080/customers/" + order.getCustomerId();
+        // String url = "http://localhost:8080/customers/" + order.getCustomerId();
 
         //make a call to customer microservice
         //Customer customer = restTemplate.getForObject(url, Customer.class);
