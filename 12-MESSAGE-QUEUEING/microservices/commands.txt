@@ -1,0 +1,20 @@
+// RUN ZOOKEEPER AND KAFKA CONTAINERS
+docker compose up -d
+
+
+// LOGIN TO THE CONTAINER
+docker exec -it kafka bash
+
+
+// CREATE CUSTOMER TOPICS 
+kafka topics \
+--create \
+--topic customer-topic \
+--bootstrap-server localhost:9092
+
+// CREATE ORDER TOPICS 
+kafka topics \
+--create \
+--topic customer-topic \
+--bootstrap-server localhost:9092
+
