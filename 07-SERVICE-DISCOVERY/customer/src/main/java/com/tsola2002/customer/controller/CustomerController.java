@@ -28,6 +28,7 @@ public class CustomerController {
 
     @GetMapping
     public List<Customer> getAllCustomers() {
+
         return service.getAllCustomers();
     }
 
