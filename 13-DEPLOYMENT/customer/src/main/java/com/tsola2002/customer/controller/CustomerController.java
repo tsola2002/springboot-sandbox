@@ -9,6 +9,7 @@ import java.util.List;
 
 @RestController
 public class CustomerController {
+
     private final CustomerService customerService;
 
     public CustomerController(CustomerService customerService) {
@@ -16,7 +17,7 @@ public class CustomerController {
     }
 
     @GetMapping("api/customers")
-    public List<Customer> getCustomer(){
+    public List<Customer> getCustomers(){
         return customerService.getAllCustomer();
     }
 }
