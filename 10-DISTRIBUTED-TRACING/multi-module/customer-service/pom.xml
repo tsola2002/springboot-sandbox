@@ -1,0 +1,24 @@
+<project>
+    
+    <parent>
+        <groupId>com.tsola2002</groupId>
+        <artifactId>multi-module</artifactId>
+    </parent>
+
+    <artifactId>customer-service</artifactId>
+    
+  
+    <dependencies>
+            <dependency>
+                <groudId>org.springframework.boot</groudId>
+                <artifactId>spring-boot-starter-web</artifactId>
+            </dependency>
+
+            <dependency>
+                <groudId>org.projectlombok</groudId>
+                <artifactId>lombok</artifactId>
+                <scope>provided</scope>
+            </dependency>
+    </dependencies>
+  
+</project>
