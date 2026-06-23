@@ -1,0 +1,19 @@
+<project>
+    
+    <parent>
+        <groupId>com.tsola2002</groupId>
+        <artifactId>multi-module</artifactId>
+    </parent>
+
+    <artifactId>fraud-service</artifactId>
+    
+  
+    <dependencies>
+            <dependency>
+                <groudId>org.projectlombok</groudId>
+                <artifactId>lombok</artifactId>
+                <scope>provided</scope>
+            </dependency>
+    </dependencies>
+  
+</project>
