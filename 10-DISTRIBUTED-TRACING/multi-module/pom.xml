@@ -1,4 +1,7 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.tsola2002</groupId>
@@ -7,19 +10,19 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>customer-service</module>
-        <module>fraud-service</module>
+        <module>fraudservice</module>
+        <module>customerservice</module>
     </modules>
 
-    <properies>
-        <java.version>21</java.version>
+    <properties>
+        <java.version>17</java.version>
         <spring.boot.version>3.3.0</spring.boot.version>
-    </properies>
+    </properties>
 
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <groudId>org.springframework.boot</groudId>
+                <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-dependencies</artifactId>
                 <version>${spring.boot.version}</version>
                 <type>pom</type>
@@ -27,4 +30,5 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
+
 </project>
