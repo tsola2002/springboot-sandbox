@@ -22,9 +22,9 @@ public class CustomerController {
     }
 
     @GetMapping("/{customerId}")
-    public String checkCustomer(@PathVariable String customerId) {
+    public String checkCustomer(@PathVariable("customerId") String customerId) {
 
-        log.info("Customer request received: {}", customerId);
+        log.info("Customer request received to be sent to fraud service: {}", customerId);
 
         String url = "http://localhost:8081/api/fraud/" + customerId;
 
