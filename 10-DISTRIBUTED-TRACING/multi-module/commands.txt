@@ -1,0 +1,2 @@
+// RUN A SPRING PROJECT 
+mvn spring-boot:run
