@@ -1,2 +1,7 @@
 // RUN A SPRING PROJECT 
 mvn spring-boot:run
+
+
+// TESTING FRAUD SERVICE
+curl http://localhost:8081/api/fraud/123
+curl http://localhost:8081/api/fraud/9123
