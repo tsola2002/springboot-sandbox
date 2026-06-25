@@ -12,7 +12,6 @@
     <modules>
         <module>fraudservice</module>
         <module>customerservice</module>
-        <module>common</module>
     </modules>
 
     <properties>

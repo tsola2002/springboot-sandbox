@@ -1,0 +1,11 @@
+// RUN A SPRING PROJECT 
+mvn spring-boot:run
+
+// TESTING CUSTOMER SERVICE
+curl http://localhost:8080/api/customer/123
+curl http://localhost:8080/api/customer/9123
+
+
+// TESTING FRAUD SERVICE
+curl http://localhost:8081/api/fraud/123
+curl http://localhost:8081/api/fraud/9123

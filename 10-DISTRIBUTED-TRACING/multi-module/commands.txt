@@ -1,3 +1,9 @@
+// CLEAN A SPRING PROJECT
+mvn clean
+
+// INSTALL A SPRING PROJECT
+mvn compile
+
 // RUN A SPRING PROJECT 
 mvn spring-boot:run
 
@@ -9,3 +15,11 @@ curl http://localhost:8080/api/customer/9123
 // TESTING FRAUD SERVICE
 curl http://localhost:8081/api/fraud/123
 curl http://localhost:8081/api/fraud/9123
+
+// RUNNIG ZIPKIN SERVER
+docker run -d -p 9411:9411 openzipkin/zipkin
+
+localhost:9411/zipkin
+
+// USING DOCKER-COMPOSE FILE
+docker compose up -d

@@ -1,0 +1,4 @@
+com\tsola2002\customerservice\controller\CustomerController.class
+com\tsola2002\customerservice\config\AppConfig.class
+com\tsola2002\customerservice\CustomerServiceApplication.class
+com\tsola2002\customerservice\dto\FraudResponse.class
